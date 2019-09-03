@@ -53,17 +53,19 @@ $console
 
 		$tables = array();
 		foreach($dbTables as $dbTable){
+			$table_name = $dbTable['name'];
+			print "Processing table $table_name\n";
 
 			if(count($dbTable['columns']) <= 1){
 				continue;
 			}
 
-			$table_name = $dbTable['name'];
 			$table_columns = array();
 			$primary_key = false;
 
 			$primary_keys = 0;
 			$primary_keys_auto = 0;
+			$last_primary_key = $primary_keys;
 			foreach($dbTable['columns'] as $column){
 				if($column['Key'] == "PRI"){
 					$primary_keys++;
@@ -72,6 +74,8 @@ $console
 					$primary_keys_auto++;
 				}
 			}
+			if ($last_primary_key == $primary_keys)
+				print "Skipping table $table_name, no primary key found.\n";
 
 			if($primary_keys === 1 || ($primary_keys > 1 && $primary_keys_auto === 1)){
 
