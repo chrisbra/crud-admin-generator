@@ -10,6 +10,8 @@
  * file that was distributed with this source code.
  */
 
+if (!file_exists(__DIR__.'/../../vendor/autoload.php'))
+    die('Please run php composer.phar install');
 
 require_once __DIR__.'/../../vendor/autoload.php';
 require_once __DIR__.'/../../src/app.php';
