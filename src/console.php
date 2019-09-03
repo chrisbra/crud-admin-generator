@@ -124,6 +124,11 @@ $console
 
 		}
 
+		if ($primary_keys == 0){
+			print "No Tables found, most likely missing primary keys!, aborting!\n";
+			return;
+		}
+
 		$MENU_OPTIONS = "";
 		$BASE_INCLUDES = "";
 
